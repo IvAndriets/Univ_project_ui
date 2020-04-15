@@ -51,7 +51,6 @@
   import axios from 'axios';
   import {baseUrl} from '../../utils/settings';
 
-
   export default {
     name: 'AddProjectPage',
     data: () => ({
@@ -62,7 +61,7 @@
     methods: {
       postMethod () {
         console.log(this.projectData);
-        axios.post(`${baseUrl}/projects`, {name:this.name, rate:this.rate})
+        axios.post(`${baseUrl}/projects`, {name: this.name, rate: this.rate})
           .catch(e => {
               this.error = e;
             }

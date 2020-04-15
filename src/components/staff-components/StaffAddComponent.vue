@@ -44,6 +44,7 @@
                         @click="postMethod">
                 Save
               </b-button>
+
             </div>
           </div>
 
@@ -67,7 +68,7 @@
     }),
     methods: {
       postMethod () {
-        axios.post(`${baseUrl}/staff`, {name:this.name, second_name:this.second_name, surname:this.surname})
+        axios.post(`${baseUrl}/staff`, {name: this.name, second_name: this.second_name, surname: this.surname})
           .catch(e => (this.error = e))
           .then(() => this.$router.push('/staff'));
       },
