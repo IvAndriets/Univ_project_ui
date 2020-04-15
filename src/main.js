@@ -5,11 +5,14 @@ import {routes} from './router/index';
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-import DeleteModal from './components/dialogs/DeleteModal';
-import AddTimeModal from './components/dialogs/AddTimeModal';
+import DeleteDialog from './components/dialogs/DeleteDialog';
+import RegisterTimeModal from './components/dialogs/RegisterTimeDialog';
+import Vuelidate from 'vuelidate';
 
-Vue.component( 'delete-modal',DeleteModal);
-Vue.component( 'add-time-modal',AddTimeModal);
+Vue.use(Vuelidate);
+
+Vue.component( 'delete-modal',DeleteDialog);
+Vue.component( 'add-time-modal',RegisterTimeModal);
 
 
 Vue.config.productionTip = false;

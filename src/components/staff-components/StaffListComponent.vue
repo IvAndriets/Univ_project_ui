@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <b-container class="head">
-      <h3>Projects</h3>
+      <h3>Staff</h3>
 
-      <b-button :to="{path: '/projects/add' }">
-          Add
+      <b-button :to="{path: '/staff/add' }">
+        Add
       </b-button>
     </b-container>
     <div>
@@ -14,22 +14,22 @@
         <b-thead>
           <b-tr>
             <b-th>Name</b-th>
-            <b-th>Rate</b-th>
+            <b-th>Surname</b-th>
             <b-th></b-th>
           </b-tr>
         </b-thead>
-        <b-tbody v-for="i in projects"
-                 :key="i.id">
+        <b-tbody v-for="member in staff"
+                 :key="member.id">
           <b-tr>
             <b-td>
-              <router-link :to="{path:`/projects/${i.id}`}"
+              <router-link :to="{path:`/staff/${member.id}`}"
                            class="nav-link">
-                {{ i.name }}
+                {{ member.name }}
               </router-link>
             </b-td>
-            <b-td>{{ i.rate }}</b-td>
+            <b-td>{{ member.surname }}</b-td>
             <b-td class="deleteMod">
-              <b-button @click="onDelete(i)">
+              <b-button @click="onDelete(member)">
                 Delete
               </b-button>
             </b-td>
@@ -49,36 +49,41 @@
   import {eventBus} from '../../main';
 
   export default {
-    name: 'ProjectComponent',
+    name: 'StaffComponent',
     data: () => (
       {
-        projects: [],
+        staff: [],
         error: null,
       }
     ),
     created () {
-      axios.get(`${baseUrl}/projects`)
-        .then(response => (this.projects = response.data))
+      axios.get(`${baseUrl}/staff`)
+        .then(response => (this.staff = response.data))
         .catch(e => (this.error = e));
     },
     mounted () {
-      eventBus.$on('ON_DELETE_PROJECT', data => {
-        this.deleteProject(data);
+      console.log('@@@ IVAN SMOTRI JA MOUNTED!!! @@@');
+      eventBus.$on('ON_DELETE_STAFF', data => {
+        this.deletePerson(data);
       });
     },
+    beforeDestroy () {
+      eventBus.$off('ON_DELETE_STAFF');
+    },
     methods: {
-      onDelete (project) {
-        eventBus.$emit('ON_SHOW', {source: 'projects', data: project});
+      onDelete (user) {
+        eventBus.$emit('ON_SHOW', {source: 'staff', data: user});
       },
-      deleteProject (project) {
-        axios.delete(`${baseUrl}/projects/${project.id}`)
+      deletePerson (user) {
+        axios.delete(`${baseUrl}/staff/${user.id}`)
           .then(() => {
-            this.projects.splice(this.projects.indexOf(project), 1);
+            this.staff.splice(this.staff.indexOf(user), 1);
           });
       },
     },
   };
 </script>
 
-<style scoped>
+<style>
+
 </style>

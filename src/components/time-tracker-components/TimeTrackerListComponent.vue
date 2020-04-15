@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <add-time-modal></add-time-modal>
     <b-container class="head">
       <h3>Time tracker</h3>
 
@@ -73,6 +72,11 @@
     mounted () {
       eventBus.$on('ON_DELETE_TIME_TRACKER', data => this.deleteTime(data));
       eventBus.$on('ON_ADD_NEW_TIME', data => this.addTimeMethod(data));
+    },
+    beforeDestroy () {
+      eventBus.$off('ON_DELETE_TIME_TRACKER');
+      eventBus.$off('ON_ADD_NEW_TIME');
+
     },
     methods: {
       onDelete (timeComp) {

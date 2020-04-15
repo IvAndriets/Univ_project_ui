@@ -26,12 +26,12 @@
                      class="form-control">
             </div>
             <b-button class="btn-dark"
-                      @click="putMethod">
-              Ok
-            </b-button>
-            <b-button class="btn-dark"
                       @click="cancelMethod">
               Cancel
+            </b-button>
+            <b-button class="btn-dark"
+                      @click="putMethod">
+              Save
             </b-button>
           </div>
 

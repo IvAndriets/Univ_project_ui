@@ -1,6 +1,7 @@
 <template>
   <div>
     <delete-modal></delete-modal>
+    <add-time-modal></add-time-modal>
     <header class="navbar navbar-dark navbar-expand flex-column flex-md-row bd-navbar">
       <b-container style="display: flex; justify-content: end">
         <router-link :to="{path:'/'}"

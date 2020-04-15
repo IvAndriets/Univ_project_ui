@@ -12,7 +12,7 @@
                 Name
               </label>
               <input id="name"
-                     v-model="personData.name"
+                     v-model="name"
                      type="text"
                      class="form-control">
             </div>
@@ -21,7 +21,7 @@
                 Second name
               </label>
               <input id="second_name"
-                     v-model="personData.second_name"
+                     v-model="second_name"
                      type="text"
                      class="form-control">
             </div>
@@ -30,18 +30,19 @@
                 Surname
               </label>
               <input id="surname"
-                     v-model="personData.surname"
+                     v-model="surname"
                      type="text"
                      class="form-control">
             </div>
             <div>
               <b-button class="btn-dark"
-                        @click="postMethod">
-                Add
-              </b-button>
-              <b-button class="btn-dark"
                         @click="cancelMethod">
                 Cancel
+              </b-button>
+              <b-button class="btn-dark"
+                        :disabled="!name || !second_name || !surname"
+                        @click="postMethod">
+                Save
               </b-button>
             </div>
           </div>
@@ -54,31 +55,24 @@
 
 <script>
   import axios from 'axios';
+  import {baseUrl} from '../../utils/settings';
 
   export default {
     name: 'AddNewStaffMemberComponent',
     data: () => ({
-      personData: {
-        name: '',
-        second_name: '',
-        surname: '',
-      },
+      name: '',
+      second_name: '',
+      surname: '',
       error: null,
     }),
     methods: {
       postMethod () {
-        console.log(this.personData);
-        axios.post('http://localhost:5000/staff', this.personData)
-          .catch(e => {
-              this.error = e;
-            }
-          )
-          .then(() => {
-            this.$router.push('/staff');
-          });
+        axios.post(`${baseUrl}/staff`, {name:this.name, second_name:this.second_name, surname:this.surname})
+          .catch(e => (this.error = e))
+          .then(() => this.$router.push('/staff'));
       },
       cancelMethod () {
-        this.$router.push('/projects');
+        this.$router.push('/staff');
       },
 
     },

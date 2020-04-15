@@ -1,11 +1,11 @@
 import MainPage from '../components/MainPage';
-import StaffComponent from '../components/Staff-Components/StaffComponent';
-import AddNewStaffMemberComponent from '../components/Staff-Components/AddNewStaffMemberComponent';
-import ProjectComponent from '../components/ProjectsComponents/ProjectComponent';
-import AddProjectPage from '../components/ProjectsComponents/AddProjectPage';
-import ProjectPage from '../components/ProjectsComponents/ProjectPage';
-import TimeTrackerComponent from '../components/TimeTrackerComponents/TimeTrackerComponent';
-import StaffMemberPage from '../components/Staff-Components/StaffMemberPage';
+import StaffListComponent from '../components/staff-components/StaffListComponent';
+import StaffAddComponent from '../components/staff-components/StaffAddComponent';
+import StaffEditComponent from '../components/staff-components/StaffEditComponent';
+import ProjectListComponent from '../components/projects-components/ProjectListComponent';
+import ProjectAddComponent from '../components/projects-components/ProjectAddComponent';
+import ProjectEditComponent from '../components/projects-components/ProjectEditComponent';
+import TimeTrackerListComponent from '../components/time-tracker-components/TimeTrackerListComponent';
 
 export const routes = [
   {
@@ -15,40 +15,40 @@ export const routes = [
   },
   {
     path: '/staff',
-    name: 'StaffComponent',
-    component: StaffComponent,
+    name: 'StaffListComponent',
+    component: StaffListComponent,
   },
   {
     path: '/staff/add',
-    name: 'AddNewStaffMemberComponent',
-    component: AddNewStaffMemberComponent,
+    name: 'StaffAddComponent',
+    component: StaffAddComponent,
   },
   {
     path: '/staff/:id',
-    name: 'StaffMemberPage',
-    component: StaffMemberPage,
+    name: 'StaffEditComponent',
+    component: StaffEditComponent,
     props: true,
   },
   {
     path: '/projects',
-    name: 'ProjectComponent',
-    component: ProjectComponent,
+    name: 'ProjectListComponent',
+    component: ProjectListComponent,
   },
   {
     path: '/projects/add',
-    name: 'AddProjectPage',
-    component: AddProjectPage,
+    name: 'ProjectAddComponent',
+    component: ProjectAddComponent,
     props: true,
   },
   {
     path: '/projects/:id',
-    name: 'ProjectPage',
-    component: ProjectPage,
+    name: 'ProjectEditPage',
+    component: ProjectEditComponent,
     props: true,
   },
   {
     path: '/time-tracker',
     name: 'TimeTrackerComponent',
-    component: TimeTrackerComponent,
+    component: TimeTrackerListComponent,
   },
 ];

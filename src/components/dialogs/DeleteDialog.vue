@@ -20,6 +20,7 @@
       }
     ),
     mounted () {
+      console.log('## MOUNT DELETE DIALOG ##');
       eventBus.$on('ON_SHOW', data => {
         this.deleteData = data;
         this.showModel();
@@ -29,9 +30,9 @@
       deleteMethod () {
         if (this.deleteData && this.deleteData.source === 'staff') {
           eventBus.$emit('ON_DELETE_STAFF', this.deleteData.data);
-        } else if (this.deleteData && this.deleteData.source === 'projects'){
+        } else if (this.deleteData && this.deleteData.source === 'projects') {
           eventBus.$emit('ON_DELETE_PROJECT', this.deleteData.data);
-        } else if (this.deleteData && this.deleteData.source === 'timeTracker'){
+        } else if (this.deleteData && this.deleteData.source === 'timeTracker') {
           eventBus.$emit('ON_DELETE_TIME_TRACKER', this.deleteData.data);
         }
       },

@@ -12,7 +12,7 @@
                 Name
               </label>
               <input id="name"
-                     v-model="projectData.name"
+                     v-model="name"
                      type="text"
                      class="form-control">
             </div>
@@ -24,18 +24,19 @@
 
               </label>
               <input id="rate"
-                     v-model="projectData.rate"
+                     v-model="rate"
                      type="number"
                      class="form-control">
             </div>
             <div>
               <b-button class="btn-dark"
-                        @click="postMethod">
-                Add
-              </b-button>
-              <b-button class="btn-dark"
                         @click="cancelMethod">
                 Cancel
+              </b-button>
+              <b-button class="btn-dark"
+                        :disabled="!name || !rate"
+                        @click="postMethod">
+                Save
               </b-button>
             </div>
           </div>
@@ -50,20 +51,18 @@
   import axios from 'axios';
   import {baseUrl} from '../../utils/settings';
 
+
   export default {
     name: 'AddProjectPage',
     data: () => ({
-      projectData: {
-        id: '',
-        name: '',
-        rate: '',
-      },
+      name: '',
+      rate: '',
       error: null,
     }),
     methods: {
       postMethod () {
         console.log(this.projectData);
-        axios.post(`${baseUrl}/projects`, this.projectData)
+        axios.post(`${baseUrl}/projects`, {name:this.name, rate:this.rate})
           .catch(e => {
               this.error = e;
             }
