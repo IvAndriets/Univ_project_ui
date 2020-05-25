@@ -7,12 +7,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import DeleteDialog from './components/dialogs/DeleteDialog';
 import RegisterTimeModal from './components/dialogs/RegisterTimeDialog';
-import Vuelidate from 'vuelidate';
+import RegisterTimeSheetDialog from './components/dialogs/RegisterTimeSheetDialog';
 
-Vue.use(Vuelidate);
 
 Vue.component( 'delete-modal',DeleteDialog);
 Vue.component( 'add-time-modal',RegisterTimeModal);
+Vue.component('add-time-sheet',RegisterTimeSheetDialog);
 
 
 Vue.config.productionTip = false;

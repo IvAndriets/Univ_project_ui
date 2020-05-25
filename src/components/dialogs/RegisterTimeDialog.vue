@@ -3,13 +3,15 @@
     <b-modal ref="addModal"
              title="Add new time elem"
              @ok="addMethod">
+
       <b-container>
+        <h1>{{ staff.name }} {{ staff.surname }}</h1>
 
         <label>
           Project
         </label>
 
-        <b-form-select v-model="newTimeElem.pro_id"
+        <b-form-select v-model="newTimeElem.proId"
                        class="mb-3">
 
           <b-form-select-option v-for="project in projects"
@@ -17,22 +19,22 @@
                                 :value="project.id">
             {{ project.name }}
           </b-form-select-option>
-
         </b-form-select>
 
+
         <label>
-          Person
+          Work TYpe
         </label>
 
-        <b-form-select v-model="newTimeElem.per_id"
+        <b-form-select v-model="newTimeElem.workId"
+                       onselect=""
                        class="mb-3">
 
-          <b-form-select-option v-for="person in staff"
-                                :key="person.id"
-                                :value="person.id">
-            {{ person.name }} {{ person.surname }}
+          <b-form-select-option v-for="type in workType"
+                                :key="type.id"
+                                :value="type.id">
+            {{ type.name }} {{ type.salaryMod }}
           </b-form-select-option>
-
         </b-form-select>
 
         <label>
@@ -60,18 +62,27 @@
       {
         projects: [],
         staff: [],
+        workType: [],
         selectedProject: null,
         newTimeElem: {
-          per_id: '',
-          pro_id: '',
+
+          perId: '',
+          proId: '',
+          workId:'',
+          positionId:'',
           time: '',
+          headId:'',
         },
       }),
     mounted () {
       eventBus.$on('ON_ADD_TIME', data => {
 
         this.staff = data.staff;
+        this.newTimeElem.perId = data.staff.id;
+        this.newTimeElem.positionId = data.staff.positionId;
         this.projects = data.projectList;
+        this.newTimeElem.headId = data.headId;
+        this.workType = data.workType;
 
         this.showModal();
       });

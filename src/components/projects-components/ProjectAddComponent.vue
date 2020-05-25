@@ -16,18 +16,6 @@
                      type="text"
                      class="form-control">
             </div>
-            <div class="form-group">
-              <label for="name">
-                Rate
-              </label>
-              <label for="rate">
-
-              </label>
-              <input id="rate"
-                     v-model="rate"
-                     type="number"
-                     class="form-control">
-            </div>
             <div>
               <b-button class="btn-dark"
                         @click="cancelMethod">

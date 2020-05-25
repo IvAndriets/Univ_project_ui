@@ -3,7 +3,7 @@
     <b-container class="head">
       <h3>Staff</h3>
 
-      <b-button :to="{path: '/staff/add' }">
+      <b-button :to="{path: '/main/staff/add' }">
         Add
       </b-button>
     </b-container>
@@ -15,6 +15,9 @@
           <b-tr>
             <b-th>Name</b-th>
             <b-th>Surname</b-th>
+            <b-th>Position</b-th>
+            <b-th>Create at</b-th>
+            <b-th>Update at</b-th>
             <b-th></b-th>
           </b-tr>
         </b-thead>
@@ -22,12 +25,17 @@
                  :key="member.id">
           <b-tr>
             <b-td>
-              <router-link :to="{path:`/staff/${member.id}`}"
+              <router-link :to="{path:`/main/staff/${member.id}`}"
                            class="nav-link">
                 {{ member.name }}
               </router-link>
             </b-td>
-            <b-td>{{ member.surname }}</b-td>
+            <b-td>
+              {{ member.surname }}
+            </b-td>
+            <b-td>{{ member.position }}</b-td>
+            <b-td>{{ member.createAt }}</b-td>
+            <b-td>{{ member.updateAt }}</b-td>
             <b-td class="deleteMod">
               <b-button @click="onDelete(member)">
                 Delete
@@ -62,7 +70,6 @@
         .catch(e => (this.error = e));
     },
     mounted () {
-      console.log('@@@ IVAN SMOTRI JA MOUNTED!!! @@@');
       eventBus.$on('ON_DELETE_STAFF', data => {
         this.deletePerson(data);
       });

@@ -1,39 +1,70 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <delete-modal></delete-modal>
     <add-time-modal></add-time-modal>
-    <header class="navbar navbar-dark navbar-expand flex-column flex-md-row bd-navbar">
-      <b-container style="display: flex; justify-content: end">
-        <router-link :to="{path:'/'}"
-                     class="navbar-brand mr-0 mr-md-2">
-          Project For university
-        </router-link>
-        <div class="navbar-nav-scroll">
-          <ul class="navbar-nav bd-navbar-nav flex-row">
-            <li class="nav-item">
-              <router-link :to="{ path: '/staff' }"
-                           class="nav-link">
-                /staff
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ path: '/projects' }"
-                           class="nav-link">
-                /projects
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="{ path: '/time-tracker' }"
-                           class="nav-link">
-                /time-tracker
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </b-container>
+    <add-time-sheet></add-time-sheet>
+    <header class="navbar navbar-expand-md navbar-dark bg-dark">
+      <router-link :to="{path:'/'}"
+                   class="navbar-brand"
+                   style="min-width: 16.666667%;">
+        My project
+      </router-link>
+      <div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link :to="{ path: '/main' }"
+                         class="nav-link">Dictionaries
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ path: '/salary-calculator' }"
+                         class="nav-link">Salary Calculator
+            </router-link>
+          </li>
+
+        </ul>
+      </div>
     </header>
-    <router-view>
+    <router-view v-if="this.$route.path != '/' ">
+
     </router-view>
+
+    <div v-else>
+      <div class="jumbotron">
+        <div class="container">
+          <h2>
+            My project
+          </h2>
+          <p>
+            It's my project made for university on 11 them!
+          </p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Dictionaries</h2>
+            <p>Here your can view information that used for salary calculating!</p>
+            <p>
+              <b-button to="/main/staff"
+                        class="btn-dark">
+                View
+              </b-button>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h2>Salary calculator</h2>
+            <p>Here you can calculate salary!</p>
+            <p>
+              <b-button to="/main/projects"
+                        class="btn-dark">
+                View
+              </b-button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,51 +77,26 @@
 </script>
 
 <style>
-  .deleteMod{
+  .deleteMod {
     text-align-last: right;
   }
+
   .head {
     display: flex;
     justify-content: space-between;
     padding: 16px 0;
   }
 
-  .bd-navbar {
-    min-height: 4rem;
-    background-color: #563d7c;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  .nav-link {
+    padding: .5rem;
+    color: #333;
   }
 
-  .flex-column {
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -ms-flex-direction: column !important;
-    flex-direction: column !important;
+  html{
+    height: 100%;
+  }
+  body{
+    height: 100%;
   }
 
-  .navbar-expand {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
-
-  .navbar {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: end;
-    padding: .5rem 1rem;
-  }
 </style>

@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-ms-offset-3">
             <h1>
-              Add Project Form
+              Add new Project
             </h1>
             <div class="form-group">
               <label for="name">
@@ -70,10 +70,10 @@
     methods: {
       putMethod () {
         axios.put(`${baseUrl}/projects/${this.id}`, this.project)
-          .then(() => (this.$router.push('/projects')));
+          .then(() => (this.$router.push('/main/projects')));
       },
       cancelMethod () {
-        this.$router.push('/projects');
+        this.$router.push('/main/projects');
       },
     },
   };

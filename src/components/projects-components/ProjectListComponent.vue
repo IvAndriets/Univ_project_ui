@@ -3,7 +3,7 @@
     <b-container class="head">
       <h3>Projects</h3>
 
-      <b-button :to="{path: '/projects/add' }">
+      <b-button :to="{path: '/main/projects/add' }">
           Add
       </b-button>
     </b-container>
@@ -14,22 +14,24 @@
         <b-thead>
           <b-tr>
             <b-th>Name</b-th>
-            <b-th>Rate</b-th>
+            <b-th>Create at</b-th>
+            <b-th>Update at</b-th>
             <b-th></b-th>
           </b-tr>
         </b-thead>
-        <b-tbody v-for="i in projects"
-                 :key="i.id">
+        <b-tbody v-for="project in projects"
+                 :key="project.id">
           <b-tr>
             <b-td>
-              <router-link :to="{path:`/projects/${i.id}`}"
+              <router-link :to="{path:`/main/projects/${project.id}`}"
                            class="nav-link">
-                {{ i.name }}
+                {{ project.name }}
               </router-link>
             </b-td>
-            <b-td>{{ i.rate }}</b-td>
+            <b-td>{{ project.createAt }}</b-td>
+            <b-td>{{ project.updateAt }}</b-td>
             <b-td class="deleteMod">
-              <b-button @click="onDelete(i)">
+              <b-button @click="onDelete(project)">
                 Delete
               </b-button>
             </b-td>

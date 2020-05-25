@@ -3,9 +3,9 @@
     <form>
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-ms-offset-3">
-          <h1>
-            Add new Person
-          </h1>
+          <h3>
+            Add new Work Type
+          </h3>
           <div class="form-group">
             <label for="name">
               Name
@@ -17,25 +17,12 @@
           </div>
           <div class="form-group">
             <label for="surname">
-              Surname
+              Salary mod in percent
             </label>
             <input id="surname"
-                   v-model="surname"
+                   v-model="salary"
                    type="text"
                    class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="name">
-              Position
-            </label>
-            <b-form-select v-model="staff.positionId"
-                           class="mb-3">
-              <b-form-select-option v-for="position in positions"
-                                    :key="position.id"
-                                    :value="position.id">
-                {{ position.name }}
-              </b-form-select-option>
-            </b-form-select>
           </div>
           <div>
             <b-button class="btn-dark"
@@ -43,7 +30,7 @@
               Cancel
             </b-button>
             <b-button class="btn-dark"
-                      :disabled="!name || !second_name || !surname"
+                      :disabled="!name || !salary"
                       @click="postMethod">
               Save
             </b-button>
@@ -61,27 +48,20 @@
   import {baseUrl} from '../../utils/settings';
 
   export default {
-    name: 'AddNewStaffMemberComponent',
+    name: 'WorkTypeAddComponent',
     data: () => ({
       name: '',
-      second_name: '',
-      surname: '',
+      salary: '',
       error: null,
-      positions: [],
     }),
-    created () {
-      axios.get(`${baseUrl}/positions`)
-        .then(response => (this.positions = response.data))
-        .catch(e => (this.error = e));
-    },
     methods: {
       postMethod () {
-        axios.post(`${baseUrl}/staff`, {name: this.name, second_name: this.second_name, surname: this.surname})
+        axios.post(`${baseUrl}/work-type`, {name: this.name, salary: this.salary})
           .catch(e => (this.error = e))
-          .then(() => this.$router.push('/main/staff'));
+          .then(() => this.$router.push('/main/work-type'));
       },
       cancelMethod () {
-        this.$router.push('/main/staff');
+        this.$router.push('/main/work-type');
       },
 
     },
