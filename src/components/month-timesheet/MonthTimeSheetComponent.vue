@@ -16,7 +16,7 @@
         <b-thead>
           <b-tr>
             <b-th>Surname</b-th>
-            <b-th>Salary</b-th>
+            <b-th></b-th>
             <b-th>Period Start</b-th>
             <b-th>Period End</b-th>
             <b-th></b-th>
@@ -57,11 +57,16 @@
     data: () => (
       {
         timeSheet: [],
+        staff: [],
         error:null,
       }),
     created () {
       axios.get(`${baseUrl}/month_time_sheet`)
         .then(response => (this.timeSheet = response.data))
+        .catch(e => (this.error = e));
+
+      axios.get(`${baseUrl}/staff`)
+        .then(response => (this.staff = response.data))
         .catch(e => (this.error = e));
     },
     mounted () {
@@ -74,7 +79,7 @@
     },
     methods:{
       onAddTimeSheet () {
-        eventBus.$emit('ON_ADD_TIME_SHEET', {source: 'timeSheet'});
+        eventBus.$emit('ON_ADD_TIME_SHEET', {source: 'timeSheet', staff:this.staff});
       },
       onDelete (tableComp) {
         eventBus.$emit('ON_SHOW', {source: 'timeSheet', data: tableComp});
@@ -82,7 +87,7 @@
       deleteTimeSheet (tableComp) {
         axios.delete(`${baseUrl}/month_time_sheet/${tableComp.id}`)
           .then(() => {
-            this.timeSheet.splice(this.timeTracks.indexOf(tableComp), 1);
+            this.timeSheet.splice(this.timeSheet.indexOf(tableComp), 1);
           });
       },
       addTimeSheetMethod (data) {

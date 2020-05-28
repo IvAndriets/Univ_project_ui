@@ -39,6 +39,8 @@
           eventBus.$emit('ON_DELETE_WORK_TYPE', this.deleteData.data);
         } else if (this.deleteData && this.deleteData.source === 'timeSheet') {
           eventBus.$emit('ON_DELETE_TIME_SHEET', this.deleteData.data);
+        } else if (this.deleteData && this.deleteData.source === 'salaryTable') {
+          eventBus.$emit('ON_DELETE_SALARY', this.deleteData.data);
         }
       },
       showModel () {

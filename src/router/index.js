@@ -13,9 +13,9 @@ import PositionEditComponent from '../components/positions-component/PositionEdi
 import WorkTypeListComponent from '../components/work-type-component/WorkTypeListComponent';
 import WorkTypeAddComponent from '../components/work-type-component/WorkTypeAddComponent';
 import WorkTypeEditComponent from '../components/work-type-component/WorkTypeEditComponent';
-import CalculatorComponent from '../components/claculator-component/CalculatorComponent';
 import MonthTimeSheetComponent from '../components/month-timesheet/MonthTimeSheetComponent';
 import MonthSheetComponent from '../components/month-timesheet/MonthSheetComponent';
+import SalaryTableComponent from '../components/salary-table/SalaryTableComponent';
 
 export const routes = [
   {
@@ -103,8 +103,8 @@ export const routes = [
       },
       {
         path: 'calculator',
-        name: 'CalculatorComponent',
-        component: CalculatorComponent,
+        name: 'SalaryTableComponent',
+        component: SalaryTableComponent,
       },
       {
         path: 'time-sheet',

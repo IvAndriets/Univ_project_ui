@@ -3,6 +3,7 @@
     <delete-modal></delete-modal>
     <add-time-modal></add-time-modal>
     <add-time-sheet></add-time-sheet>
+    <add-salary></add-salary>
     <header class="navbar navbar-expand-md navbar-dark bg-dark">
       <router-link :to="{path:'/'}"
                    class="navbar-brand"

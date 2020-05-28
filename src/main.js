@@ -8,11 +8,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import DeleteDialog from './components/dialogs/DeleteDialog';
 import RegisterTimeModal from './components/dialogs/RegisterTimeDialog';
 import RegisterTimeSheetDialog from './components/dialogs/RegisterTimeSheetDialog';
+import RegisterSalaryDialog from './components/dialogs/RegisterSalaryDialog';
 
 
 Vue.component( 'delete-modal',DeleteDialog);
 Vue.component( 'add-time-modal',RegisterTimeModal);
 Vue.component('add-time-sheet',RegisterTimeSheetDialog);
+Vue.component('add-salary', RegisterSalaryDialog);
 
 
 Vue.config.productionTip = false;

@@ -91,13 +91,13 @@
 
       axios.get(`${baseUrl}/projects`)
         .then(response => (this.projects = response.data))
-        .catch(e => (this.error = e));
+        .catch(e => {this.error = e;});
 
 
 
       axios.get(`${baseUrl}/work-type`)
-        .then(response => (this.workTypeList = response.data))
-        .catch(e => (this.error = e));
+        .then(response => {this.workTypeList = response.data;})
+        .catch(e => {this.error = e;});
     },
     mounted () {
       eventBus.$on('ON_DELETE_TIME_TRACKER', data => this.deleteTime(data));
@@ -129,9 +129,10 @@
       addTimeMethod (data) {
         axios.post(`${baseUrl}/time-tracker`, data)
           .then(() => {
-            axios.get(`${baseUrl}/time-tracker`)
-              .then(response => (this.monthSheet = response.data))
-              .catch(e => (this.error = e));
+            axios.get(`${baseUrl}/month_time_sheet/${this.id}`)
+              .then(response => {this.monthSheet = response.data.sheet;
+              console.log(response.data);})
+              .catch(e => {this.error = e;});
           });
       },
     },
