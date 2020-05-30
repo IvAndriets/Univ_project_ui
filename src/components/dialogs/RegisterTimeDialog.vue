@@ -47,7 +47,11 @@
           Time spend
         </label>
 
-        <b-form-timepicker v-model="newTimeElem.time"></b-form-timepicker>
+        <label>
+          <input v-model="newTimeElem.time"
+          type="number"
+          class="form-control">
+        </label>
       </b-container>
     </b-modal>
   </div>

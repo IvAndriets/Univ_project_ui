@@ -21,7 +21,7 @@
             </label>
             <input id="surname"
                    v-model="salary"
-                   type="text"
+                   type="number"
                    class="form-control">
           </div>
           <div>

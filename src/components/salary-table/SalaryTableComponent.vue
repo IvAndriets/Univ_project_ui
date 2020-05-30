@@ -54,6 +54,8 @@
     name: 'SalaryTableComponent',
     data: () => ({
       salarySheet: [],
+      staff:[],
+      error:null,
     }),
     created () {
       axios.get(`${baseUrl}/salary-table`)
@@ -61,24 +63,29 @@
         .catch(e => {
           this.error = e;
         });
+      axios.get(`${baseUrl}/staff`)
+        .then(response => {this.staff = response.data;})
+        .catch(e => {
+          this.error = e;
+        });
     },
     mounted () {
       eventBus.$on('ON_DELETE_SALARY', data=>this.deleteMethod(data));
-      eventBus.$on('ON_ADD_SALARY', data=>this.addSalary(data));
+      eventBus.$on('ON_ADD_NEW_SALARY_SHEET', data=>this.addSalary(data));
     },
     beforeDestroy () {
       eventBus.$off('ON_DELETE_SALARY');
-      eventBus.$off('ON_ADD_SALARY');
+      eventBus.$off('ON_ADD_NEW_SALARY_SHEET');
     },
     methods: {
       onDelete (comp) {
         eventBus.$emit('ON_SHOW', {source: 'salaryTable', data: comp});
       },
       onAdd () {
-        eventBus.$emit('ON_ADD_SALARY', {source: 'salaryTable'});
+        eventBus.$emit('ON_ADD_SALARY', {source: 'salaryTable', staff:this.staff});
       },
       deleteMethod(comp){
-        axios.delete(`${baseUrl}/time-tracker/${comp.id}`)
+        axios.delete(`${baseUrl}/salary-table/${comp.id}`)
           .then(() => {
             this.salarySheet.splice(this.salarySheet.indexOf(comp), 1);
           });

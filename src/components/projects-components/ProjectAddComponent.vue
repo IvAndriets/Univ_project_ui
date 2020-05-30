@@ -22,7 +22,7 @@
                 Cancel
               </b-button>
               <b-button class="btn-dark"
-                        :disabled="!name || !rate"
+                        :disabled="!name"
                         @click="postMethod">
                 Save
               </b-button>
@@ -43,23 +43,22 @@
     name: 'AddProjectPage',
     data: () => ({
       name: '',
-      rate: '',
       error: null,
     }),
     methods: {
       postMethod () {
         console.log(this.projectData);
-        axios.post(`${baseUrl}/projects`, {name: this.name, rate: this.rate})
+        axios.post(`${baseUrl}/projects`, {name: this.name})
           .catch(e => {
               this.error = e;
             }
           )
           .then(() => {
-            this.$router.push('/projects');
+            this.$router.push('/main/projects');
           });
       },
       cancelMethod () {
-        this.$router.push('/projects');
+        this.$router.push('/main/projects');
       },
     },
   };

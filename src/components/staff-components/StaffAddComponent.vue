@@ -28,7 +28,7 @@
             <label for="name">
               Position
             </label>
-            <b-form-select v-model="staff.positionId"
+            <b-form-select v-model="position"
                            class="mb-3">
               <b-form-select-option v-for="position in positions"
                                     :key="position.id"
@@ -43,7 +43,7 @@
               Cancel
             </b-button>
             <b-button class="btn-dark"
-                      :disabled="!name || !second_name || !surname"
+                      :disabled="!name || !position || !surname"
                       @click="postMethod">
               Save
             </b-button>
@@ -64,8 +64,8 @@
     name: 'AddNewStaffMemberComponent',
     data: () => ({
       name: '',
-      second_name: '',
       surname: '',
+      position:'',
       error: null,
       positions: [],
     }),
@@ -76,7 +76,7 @@
     },
     methods: {
       postMethod () {
-        axios.post(`${baseUrl}/staff`, {name: this.name, second_name: this.second_name, surname: this.surname})
+        axios.post(`${baseUrl}/staff`, {name: this.name, position: this.position, surname: this.surname})
           .catch(e => (this.error = e))
           .then(() => this.$router.push('/main/staff'));
       },
